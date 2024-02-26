@@ -1,0 +1,519 @@
+
+bb_init()
+    conn:
+    proto_major = 7
+    proto_minor = 34
+    async_read = 1
+    max_write = 131072
+    max_readahead = 131072
+    capable = 00000ffb
+    want = 00000010
+    max_background = 0
+    congestion_threshold = 0
+    context:
+    fuse = 0fbe67d0
+    uid = 0
+    gid = 0
+    pid = 0
+    private_data = 0fbe62a0
+    logfile = 0fbe6310
+    rootdir = /home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir
+    umask = 00000
+
+bb_getattr(path="/", statbuf=0x2739bb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_getxattr(path = "/", name = "security.selinux", value = 0x20001e40, size = 255)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/", name = "system.posix_acl_default", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_opendir(path="/", fi=0x2739bb90)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    opendir returned 0x0x7fc418000ef0
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc418000ef0
+    lock_owner = 0x0000000000000000
+
+bb_readdir(path="/", buf=0x18000e70, filler=0x27e17ac0, offset=0, fi=0x27bbeb90)
+    readdir returned 0x0x7fc418000f20
+calling filler with name bogus.txt
+calling filler with name ..
+calling filler with name .
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fc418000ef0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc418000ef0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/bogus.txt", statbuf=0x2739bba0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/bogus.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/bogus.txt"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 59797
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 11
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d707c6
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_getxattr(path = "/bogus.txt", name = "security.selinux", value = 0x20001e40, size = 255)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/bogus.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/bogus.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/bogus.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/bogus.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/bogus.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_releasedir(path="/", fi=0x2739bb90)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fc418000ef0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc418000ef0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x27bbeb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_getattr(path="/", statbuf=0x2739bb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_getattr(path="/", statbuf=0x27bbeb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_getattr(path="/", statbuf=0x2739bb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_access(path="/", mask=01)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+
+bb_opendir(path="/", fi=0x2739bb90)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    opendir returned 0x0x7fc4180090e0
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc4180090e0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x27bbeb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_readdir(path="/", buf=0x18001010, filler=0x27e17ac0, offset=0, fi=0x2739bb90)
+    readdir returned 0x0x7fc418009110
+calling filler with name bogus.txt
+calling filler with name ..
+calling filler with name .
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fc4180090e0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc4180090e0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/bogus.txt", statbuf=0x27bbeba0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/bogus.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/bogus.txt"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 59797
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 11
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d707c6
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_releasedir(path="/", fi=0x27bbeb90)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fc4180090e0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc4180090e0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x2739bb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_getattr(path="/test.txt", statbuf=0x27bbeba0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/test.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/test.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_mknod(path="/test.txt", mode=0100644, dev=0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/test.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/test.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/test.txt", statbuf=0x27bbeba0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/test.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/test.txt"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 62023
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x65d709e3
+    st_mtime = 0x65d709e3
+    st_ctime = 0x65d709e3
+
+bb_open(path"/test.txt", fi=0x2739bc50)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/test.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/test.txt"
+    open returned 5
+    fi:
+    flags = 0x00008801
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+
+bb_flush(path="/test.txt", fi=0x27bbec50)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x4e24585703a67b5c
+
+bb_utime(path="/test.txt", ubuf=0x2739ba00)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/test.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/test.txt"
+    utime returned 0
+
+bb_getattr(path="/test.txt", statbuf=0x2739bad0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/test.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/test.txt"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 62023
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x65d709e3
+    st_mtime = 0x65d709e3
+    st_ctime = 0x65d709e3
+
+bb_flush(path="/test.txt", fi=0x27bbec50)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x4e24585703a67b5c
+
+bb_release(path="/test.txt", fi=0x2739bc50)
+    fi:
+    flags = 0x00008801
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_opendir(path="/", fi=0x27bbeb90)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    opendir returned 0x0x7fc420002850
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc420002850
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x2739bb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d708fb
+    st_mtime = 0x65d709e3
+    st_ctime = 0x65d709e3
+
+bb_readdir(path="/", buf=0x200027d0, filler=0x27e17ac0, offset=0, fi=0x27bbeb90)
+    readdir returned 0x0x7fc420002880
+calling filler with name bogus.txt
+calling filler with name test.txt
+calling filler with name ..
+calling filler with name .
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fc420002850
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc420002850
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/bogus.txt", statbuf=0x2739bba0)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/bogus.txt", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/bogus.txt"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 59797
+    st_mode = 0100644
+    st_nlink = 1
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 11
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d707c6
+    st_mtime = 0x65d707c6
+    st_ctime = 0x65d707c6
+
+bb_releasedir(path="/", fi=0x2739bb90)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7fc420002850
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007fc420002850
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x27bbeb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d709e3
+    st_mtime = 0x65d709e3
+    st_ctime = 0x65d709e3
+
+bb_getattr(path="/", statbuf=0x2739bb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d709e3
+    st_mtime = 0x65d709e3
+    st_ctime = 0x65d709e3
+
+bb_getattr(path="/", statbuf=0x27bbeb70)
+    bb_fullpath:  rootdir = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir", path = "/", fpath = "/home/vespasian/aos/lab2/fuse-tutorial-2018-02-04/example/rootdir/"
+    lstat returned 0
+    si:
+    st_dev = 2080
+    st_ino = 3872
+    st_mode = 040755
+    st_nlink = 2
+    st_uid = 1000
+    st_gid = 1000
+    st_rdev = 0
+    st_size = 4096
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x65d709e3
+    st_mtime = 0x65d709e3
+    st_ctime = 0x65d709e3
+
+bb_destroy(userdata=0x0fbe62a0)
