@@ -6,8 +6,8 @@
 #include <chrono>
 #include <vector>
 
-#define MAXN 20000
-#define FILE_PATH "../nfs/largefile.txt"
+#define MAXN 30000
+#define FILE_PATH "../ulfs/mount_point/largefile.txt"
 
 int main() {
     const char *filename = FILE_PATH;
@@ -30,11 +30,13 @@ int main() {
         return 1; // Return with error status
     }
 
+    auto secondstart = std::chrono::steady_clock::now();
+
     // Allocate buffer for reading
     std::vector<char> buffer(file_size);
 
     for(int i = 0; i < MAXN; i++) {
-
+        std::cout << "Reading file " << i << std::endl;
         // Reset file pointer to the beginning
         if (lseek(fd, 0, SEEK_SET) == -1) {
             std::cerr << "Error resetting file pointer: " << strerror(errno) << std::endl;
@@ -66,11 +68,18 @@ int main() {
     auto end = std::chrono::steady_clock::now();
 
     // Calculate elapsed time
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    std::cout << "\nElapsed time: " << duration.count() << " milliseconds." << std::endl;
+    
+
+    auto secondduration = std::chrono::duration_cast<std::chrono::milliseconds>(end - secondstart);
+    std::cout << "\nElapsed time: " << secondduration.count() << " milliseconds." << std::endl;
 
     // Close the file descriptor
     close(fd);
+
+    end = std::chrono::steady_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    std::cout << "\nElapsed time: " << duration.count() << " milliseconds." << std::endl;
 
     return 0; // Return success
 }

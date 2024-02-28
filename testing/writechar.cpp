@@ -2,7 +2,7 @@
 #include <fstream>
 #include <random>
 
-#define FILE_PATH "../nfs/largefile.txt"
+#define FILE_PATH "../ulfs/mount_point/largefile.txt"
 
 int main() {
     const char *filename = FILE_PATH;

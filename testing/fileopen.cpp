@@ -3,13 +3,14 @@
 #include <chrono>
 #include <thread>
 
-#define MAXN 100000
-#define FILE_PATH "../nfs/example.txt"
+#define MAXN 30000
+#define FILE_PATH "../ulfs/mount_point/example.txt"
 
 int main() {
     auto start = std::chrono::steady_clock::now();
 
     for (int i = 0; i < MAXN; i++) {
+        std::cout << "Touching file " << i << std::endl;
         // Open the file
         std::ofstream file(FILE_PATH);
 
