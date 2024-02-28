@@ -1,3 +1,4 @@
 .vscode/*
 ulfs/scpfs
 fuse-tutorial-2018-02-04/example/*
+nfs/largefile.txt
