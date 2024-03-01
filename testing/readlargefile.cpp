@@ -7,7 +7,7 @@
 #include <vector>
 
 #define MAXN 30000
-#define FILE_PATH "../ulfs/mount_point/largefile.txt"
+#define FILE_PATH "../nfs/largefile.txt"
 
 int main() {
     const char *filename = FILE_PATH;
