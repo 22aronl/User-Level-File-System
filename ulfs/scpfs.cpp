@@ -38,11 +38,13 @@ static int scpfs_getattr(const char *path, struct stat *stbuf) {
     string local_path = LOCAL_DESTINATION + string(path);
 
     if (file_exists_locally(local_path.c_str())) {
+        std::cerr << "Local file exists: " << local_path << std::endl;
         if (lstat(local_path.c_str(), stbuf) == -1) {
             std::cerr << "Error getting local file attributes: " << local_path << std::endl;
             return -errno;
         }
     } else {
+        std::cerr << "Remote file exists: " << REMOTE_DESTINATION + string(path) << std::endl;
         sftp_attributes attributes = sftp_stat(sftpSession, (REMOTE_DESTINATION + string(path)).c_str());
         if (attributes == NULL) {
             std::cerr << "Error getting remote file attributes: " << REMOTE_DESTINATION + string(path) << std::endl;
@@ -260,8 +262,10 @@ static int scpfs_open(const char *path, struct fuse_file_info *fi) {
 
     string localPath = LOCAL_DESTINATION + string(path);
     int localFile = open(localPath.c_str(), O_RDWR | O_CREAT | O_TRUNC, 0666);
+    std::cerr << "CREATING FILE: " << localFile << std::endl;
     if (localFile == -1) {
         // Failed to create local temporary file
+        cerr << "Error creating local file: " << localPath << endl;
         sftp_close(remoteFile);
         sftp_free(sftpSession);
         return -errno;
@@ -307,7 +311,7 @@ static int scpfs_read(const char *path, char *buf, size_t size, off_t offset, st
     int res = pread(fi->fh, buf, size, offset);
     if (res == -1) {
         // log_msg("Error reading file: %s\n", "hi");
-        // std::cerr << "Error reading file for read: " << localPath << std::endl;
+        std::cerr << "Error reading file for read: " << res << std::endl;
         res = -errno;
     }
 
@@ -319,7 +323,7 @@ static int scpfs_write(const char *path, const char *buf, size_t size, off_t off
     // int fd;
     // int res;
     // (void)fi;
-    // std::cerr << "WRITING FILE: " << LOCAL_DESTINATION + string(path) << std::endl;
+    std::cerr << "WRITING FILE: " << LOCAL_DESTINATION + string(path) << std::endl;
     // string localPath = LOCAL_DESTINATION + string(path);
     // fd = open(path, O_WRONLY);
     // if (fd == -1) {
@@ -369,9 +373,11 @@ static int scpfs_release(const char *path, struct fuse_file_info *fi) {
         cerr << "Error opening remote file: " << REMOTE_DESTINATION + string(path) << endl;
         return -errno;
     }
-
+    std::cerr << "CLOSING FILE: " << fi->fh << std::endl;
     int local_file = fi->fh;
     close(local_file);
+
+    std::cerr << "DELETING FILE: " << localpath << std::endl;
 
     if (remove(localpath.c_str()) != 0) {
         cerr << "Error deleting local file: " << localpath << endl;
