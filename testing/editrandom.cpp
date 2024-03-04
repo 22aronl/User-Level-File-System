@@ -8,17 +8,17 @@
 
 using namespace std;
 
-const int MAX_FILES = 3; // Maximum number of files
+const int MAX_FILES = 6; // Maximum number of files
 
-#define FILE_PATH "../ulfs/mountpoint/"
-#define MAXN 50
+#define FILE_PATH "../ulfs/mount_point/"
+#define MAXN 50000
 
 int main() {
     // Seed the random number generator
     srand(time(0));
 
     // List of files
-    string files[MAX_FILES] = {"file1.txt", "file2.txt", "file3.txt"};
+    string files[MAX_FILES] = {"file1.txt", "file2.txt", "file3.txt", "file4.txt", "file5.txt", "file6.txt"};
 
     // Preallocate file descriptors for each file
     int fileDescriptors[MAX_FILES];
@@ -28,6 +28,7 @@ int main() {
     // Open all files and get file descriptors
     for (int i = 0; i < MAX_FILES; ++i) {
         fileDescriptors[i] = open((FILE_PATH + files[i]).c_str(), O_RDWR);
+        cerr << (FILE_PATH + files[i]).c_str() << endl;
         if (fileDescriptors[i] == -1) {
             cerr << "Error: Unable to open file " << files[i] << endl;
             return 1;
@@ -36,6 +37,8 @@ int main() {
 
     // Number of times to perform random access and modification
     // int numIterations = 5; // You can change this value
+
+    auto secondstart = std::chrono::steady_clock::now();
 
     for (int i = 0; i < MAXN; ++i) {
         // Start time for the operation
@@ -63,8 +66,12 @@ int main() {
         // End time for the operatio
     }
 
+
+
     // Stop measuring time
     auto end = std::chrono::steady_clock::now();
+
+    std::cout << "Second loop: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - secondstart).count() << " milliseconds." << std::endl;
 
     // Calculate elapsed time
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
