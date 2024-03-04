@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define MAXN 1
+#define MAXN 2
 #define FILE_PATH "../ulfs/mount_point/t"
 
 int main() {
@@ -23,7 +23,7 @@ int main() {
             cout << "Reading file " << i << endl;
             string filename = FILE_PATH + to_string(i) + ".txt";
 
-            int fd = open(filename.c_str(), O_RDONLY);
+            int fd = open(filename.c_str(), O_RDWR);
             cout << "File descriptor: " << fd << endl;
             if (fd != -1) {
                 // Read the first number from the file
@@ -34,6 +34,14 @@ int main() {
                 } else {
                     cout << "Error reading file " << filename << endl;
                 }
+
+                //write a new random number to the file
+                int new_number = rand() % 100;
+                lseek(fd, 0, SEEK_SET);
+                if(write(fd, &new_number, sizeof(new_number)) < 0) {
+                    cout << "Error writing to file " << filename << endl;
+                }
+
                 close(fd);
             } else {
                 // Handle the case where the file is not found
@@ -41,7 +49,7 @@ int main() {
             }
 
             auto s1 = std::chrono::steady_clock::now();
-            std::this_thread::sleep_for(std::chrono::milliseconds(75));
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
             auto s2 = std::chrono::steady_clock::now();
             auto duration1 = std::chrono::duration_cast<std::chrono::milliseconds>(s2 - s1);
             skip_duration += duration1;
